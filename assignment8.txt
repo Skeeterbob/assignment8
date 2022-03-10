@@ -1,0 +1,62 @@
+#Rev 0 Start 03/09/2022
+##Begin Bryan Hodgins EG0547 Here
+
+from tkinter import Tk, Label, Button
+import random
+import turtle
+
+class GUI:
+    def __init__(self, master):
+        self.master = master
+        master.title("Simple Game")
+
+        self.label = Label(master, text="Choose an option!")
+        self.label.pack()
+
+        self.madlibs_button = Button(master, text="madlibs", command=self.madlibs)
+        self.madlibs_button.pack()
+
+        self.randPoly_button = Button(master, text="Random Polygon", command=self.randPoly)
+        self.randPoly_button.pack()
+
+        self.poly_button = Button(master, text="Defined Polygon", command=self.poly)
+        self.poly_button.pack()
+        
+        self.quit_button = Button(master, text="Quit", command=master.destroy)
+        self.quit_button.pack()
+
+    def madlibs(self):
+        mlDict = {"adjective":"","food":""}
+        adj = input("Enter and adjective: ")
+        mlDict["adjective"]=adj
+        noun = input("Enter a food: ")
+        mlDict["food"]=noun
+        print("Jane ate a %s %s."%(mlDict["adjective"],mlDict["food"]))
+    def randPoly(self):
+        number = random.randint(3,20)
+        turn = 360 / number
+        perimeter = 500
+        side = perimeter / number
+        t = turtle.Turtle()
+        screen = turtle.getscreen()
+        for i in range(number):
+            t.forward(side)
+            t.right(turn)            
+    def poly(self):
+        number = input("Enter the number of sides for the polygon: ")
+        turn = 360 / number
+        perimeter = 500
+        side = perimeter / number
+        t = turtle.Turtle()
+        screen = turtle.getscreen()
+        for i in range(number):
+            t.forward(side)
+            t.right(turn)     
+root = Tk()
+my_gui = GUI(root)
+root.mainloop()
+
+#Rev 0 End 03/09/22
+##End Bryan Hodgins Eg0547 Here
+# no client information provided
+
