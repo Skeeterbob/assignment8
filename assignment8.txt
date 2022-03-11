@@ -4,6 +4,7 @@
 from tkinter import Tk, Label, Button
 import random
 import turtle
+import re
 
 class GUI:
     def __init__(self, master):
@@ -27,10 +28,17 @@ class GUI:
 
     def madlibs(self):
         mlDict = {"adjective":"","food":""}
-        adj = input("Enter and adjective: ")
+        adj = input("Enter an adjective: ")
         mlDict["adjective"]=adj
         noun = input("Enter a food: ")
         mlDict["food"]=noun
+        filt = re.compile('[^a-zA-Z]+')
+        match = filt.search(noun)
+        if match:
+            mlDict["food"] = ""
+        match = filt.search(adj)
+        if match:
+            mlDict["adjective"] = ""
         print("Jane ate a %s %s."%(mlDict["adjective"],mlDict["food"]))
     def randPoly(self):
         number = random.randint(3,20)
@@ -43,7 +51,7 @@ class GUI:
             t.forward(side)
             t.right(turn)            
     def poly(self):
-        number = input("Enter the number of sides for the polygon: ")
+        number = int(input("Enter the number of sides for the polygon: "))
         turn = 360 / number
         perimeter = 500
         side = perimeter / number
